@@ -18,13 +18,14 @@ if(typeof argv.location === 'string' && argv.location.length>0) {
    var city = argv.location;
    weather(city).then(function (weatherInfo){
      console.log(weatherInfo.name +' '+weatherInfo.temp);
+  }).catch(function (error ){
+    console.log('error: '+ error);
   });
 } else {
 console.log('no location info');
 location().then(function (city) {
-  console.log("your location: "+ city);
-  weather(city).then(function (weatherInfo){
-    console.log(weatherInfo.name +' '+weatherInfo.temp);
-  });
-});
+  return weather(city)
+}).then(function (weatherInfo) {
+  console.log(weatherInfo.name +' '+weatherInfo.temp);
+})
 }
