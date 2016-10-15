@@ -48,18 +48,26 @@ var command = argv._[0]
 
 switch (command) {
   case 'create':
-    saveAccount({
+    try{
+      saveAccount({
       name: argv.name,
       username: argv.username,
       password: argv.password});
+    } catch (e){
+      console.log(e.message);
+    }
     break;
   case 'get':
-    var account = getDecryptAccount(argv.name);
-    if (typeof account === 'undefined') {
-      console.log("no such account");
-      break;
+    try{
+      var account = getDecryptAccount(argv.name);
+      if (typeof account === 'undefined') {
+        console.log("no such account");
+        break;
+      }
+      console.log(account);
+    } catch (e){
+      console.log(e.message);
     }
-    console.log(account);
     break;
     // TODO: edit
 }
