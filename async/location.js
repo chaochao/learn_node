@@ -11,7 +11,7 @@ module.exports = function(callback) {
       console.log(error);
       console.log("unable to fetch data");
     } else {
-      callback(body);
+      callback(body.city);
     }
   });
 

@@ -16,14 +16,19 @@ var argv = require('yargs')
 if(typeof argv.location === 'string' && argv.location.length>0) {
    var location = encodeURIComponent(argv.location.trim())
    console.log('with location info');
+   var city = argv.location;
+   weather(city,function (weatherInfo){
+    //print the weather
+    console.log(weatherInfo.name +' '+weatherInfo.temp);
+  });
    // get wether from this place
 } else {
 // get the location from the location
 console.log('no location info');
-location(function (locInfo) {
-  console.log(locInfo.loc),
+location(function (city) {
+  console.log(city),
   //put into weather module
-  weather(locInfo,function (weatherInfo){
+  weather(city,function (weatherInfo){
     //print the weather
     console.log(weatherInfo.name +' '+weatherInfo.temp);
   });
