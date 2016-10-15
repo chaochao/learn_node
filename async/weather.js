@@ -13,7 +13,6 @@ module.exports = function (city) {
         reject(error);
       } else {
         resolve({name: body.name, temp: body.main.temp})
-
       }
     });
   })
